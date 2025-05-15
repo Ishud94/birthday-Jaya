@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Jaya (Chotu) 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0e0b16;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-top: 30px;
+      font-size: 2.5rem;
+      color: #f9d342;
+    }
+
+    p {
+      font-size: 1.3rem;
+      margin: 20px auto;
+      max-width: 80%;
+    }
+
+    .image-container {
+      margin-top: 30px;
+    }
+
+    img {
+      width: 80%;
+      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #f08a5d;
+    }
+
+    .countdown {
+      font-size: 1.5rem;
+      margin-top: 30px;
+      color: #ffb6b6;
+    }
+
+    audio {
+      margin-top: 20px;
+    }
+
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: fall 5s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10%;
+        opacity: 1;
+      }
+      100% {
+        top: 110%;
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy Birthday, Jaya (Chotu)! 🎂</h1>
+  <p>Happy birthday, my heart! You are the reason my life is so beautiful, and I love you more than words can express. 💖</p>
+
+  <div class="image-container">
+    <img src="birthday_dance.jpg" alt="Dancing Couple" />
+  </div>
+
+  <div class="countdown">
+    Time left until your special day:<br>
+    <span id="timer"></span>
+  </div>
+
+  <audio controls autoplay loop>
+    <source src="sahiba.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Countdown to May 30
+    const birthday = new Date("May 30, 2025 00:00:00").getTime();
+
+    const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = birthday - now;
+
+      if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("timer").innerHTML = "It's your birthday, love! 💝";
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("timer").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }, 1000);
+
+    // Create floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }, 300);
+  </script>
+</body>
+</html>
